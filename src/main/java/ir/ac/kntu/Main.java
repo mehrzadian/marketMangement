@@ -1,21 +1,26 @@
 package ir.ac.kntu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-//        System.out.println(jsonGenerator.generateBuyRecipe());
+
         System.out.println("If this is a shopping list enter 1 otherwise enter 0");
         Scanner scanner = new Scanner(System.in);
         int mode = scanner.nextInt();
         String recipe = gettingRecipe(mode);
         menu();
         int whatToDisplay = scanner.nextInt();
-
+        JsonGenerator jsonGenerator = new JsonGenerator();
+        System.out.println(recipe);
+        for( String i:goods(recipe)){
+            System.out.println(i);
+        }
     }
 
-    private static String gettingRecipe(int mode) {
+    public static String gettingRecipe(int mode) {
         if (mode == 0){
             System.out.println("Enter your selling recipe");
         } else {
@@ -27,7 +32,7 @@ public class Main {
 
     }
 
-    private static void menu(){
+    public static void menu(){
         System.out.println("What do you want to see? (enter thr number)\n\n" +
                 "1. Displaying the products of a particular bracelet\n" +
                 "2. Sort products by price\n" +
@@ -38,4 +43,9 @@ public class Main {
                 "7. Display all goods in the invoice");
     }
 
+    public static String[] goods(String recipe){
+        return recipe.split(",],");
+    }
+
 }
+//\{"price":"\d+"
