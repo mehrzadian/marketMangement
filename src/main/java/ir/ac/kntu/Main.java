@@ -2,6 +2,8 @@ package ir.ac.kntu;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +20,7 @@ public class Main {
         for( String i:goods(recipe)){
             System.out.println(i);
         }
+        System.out.println(stuffs(goods(recipe))+"hi");
     }
 
     public static String gettingRecipe(int mode) {
@@ -47,5 +50,26 @@ public class Main {
         return recipe.split(",],");
     }
 
+    public static ArrayList<ArrayList<String>> stuffs(String[] goods){
+
+        ArrayList<ArrayList<String>> stuffs = new ArrayList<>();
+        String regex = ":";
+        Pattern pattern = Pattern.compile(regex);
+        for (String listOfProducts : goods){
+            Matcher matcher = pattern.matcher(listOfProducts);
+            System.out.println(matcher.groupCount());
+            for (int i=0;i<matcher.groupCount();i++) {
+                ArrayList<String> stuff = new ArrayList<>();
+                String regexForKind = "\\w+\":\\[";
+                Pattern patternForKind = Pattern.compile(regexForKind);
+                String[] kind = patternForKind.split("\"");
+                stuff.add(kind[0]);
+
+                stuffs.add(stuff);
+            }
+        }
+        return stuffs;
+
+    }
 }
 //\{"price":"\d+"
