@@ -1,6 +1,7 @@
 package ir.ac.kntu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,10 +18,14 @@ public class Main {
         int whatToDisplay = scanner.nextInt();
         JsonGenerator jsonGenerator = new JsonGenerator();
         System.out.println(recipe);
+//        Pattern re = Pattern.compile("(?:,|\\{)?([^:]*):(\"[^\"]*\"|\\{[^}]*\\}|[^},]*)",Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+//        Matcher m = re.matcher(recipe);
+//        System.out.println(m);
         for( String i:goods(recipe)){
             System.out.println(i);
         }
-        System.out.println(stuffs(goods(recipe))+"hi");
+        String[]x=goods(recipe);
+        stuffs(x);
     }
 
     public static String gettingRecipe(int mode) {
@@ -52,23 +57,24 @@ public class Main {
 
     public static ArrayList<ArrayList<String>> stuffs(String[] goods){
 
-        ArrayList<ArrayList<String>> stuffs = new ArrayList<>();
-        String regex = ":";
-        Pattern pattern = Pattern.compile(regex);
-        for (String listOfProducts : goods){
-            Matcher matcher = pattern.matcher(listOfProducts);
-            System.out.println(matcher.groupCount());
-            for (int i=0;i<matcher.groupCount();i++) {
-                ArrayList<String> stuff = new ArrayList<>();
-                String regexForKind = "\\w+\":\\[";
-                Pattern patternForKind = Pattern.compile(regexForKind);
-                String[] kind = patternForKind.split("\"");
-                stuff.add(kind[0]);
 
-                stuffs.add(stuff);
+        for (String i:goods){
+            if (i == "}"){
+                break;
             }
+            String kind = i.split(":\\[")[0];
+            i=i.split(":\\[")[1];
+            kind= kind.replaceAll("\"","");
+            kind = kind.replaceAll("\\{","");
+            System.out.println(kind);
+            for(String good: i.split("\\},")){
+                System.out.println(good);
+            }
+//            HashMap<String,String> kindName=new HashMap<>();
+//            kindName.put(i.find("\\w+\":\\["),i.("\\w+\":\\{"));
         }
-        return stuffs;
+        return new ArrayList<>();
+
 
     }
 }
