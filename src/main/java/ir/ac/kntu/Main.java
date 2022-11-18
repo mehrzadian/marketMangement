@@ -57,7 +57,7 @@ public class Main {
     }
 
     public static ArrayList<String> stuffs(String[] goods){
-        HashMap<String,String> hash= new HashMap<>();
+        ArrayList<String> stuffs = new ArrayList<>();
         for (String i:goods){
             //last index of list is "}", so we delete it.
             if (i.length()<5){
@@ -68,7 +68,7 @@ public class Main {
             kind= kind.replaceAll("\"","");
             kind = kind.replaceAll("\\{","");
             System.out.println(kind);
-            hash.put(kind,"");
+
             // for example "cheese":{"price":"192306","quantity":"59","productionDate":"2022-2-21","expirationDate":"2022-3-6"
             for(String good: i.split("\\},")){
                 //extracting name of good
@@ -76,15 +76,23 @@ public class Main {
                 String name=good.split(":\\{")[0];
                 name = name.replaceAll("\"","");
                 System.out.println(name);
+                String description = good.split(":\\{")[1];
+                stuffs.add(kind);
+                stuffs.add(name);
+                addDescriptions(stuffs, description);
 
             }
-//            HashMap<String,String> kindName=new HashMap<>();
-
-//            kindName.put(i.find("\\w+\":\\["),i.("\\w+\":\\{"));
         }
         return new ArrayList<>();
 
 
+    }
+
+    public static void addDescriptions(ArrayList<String> stuffs, String description) {
+        stuffs.add(extractPrice(description));
+        stuffs.add(extractQuantity(description));
+        stuffs.add(extractProductionDate(description));
+        stuffs.add(extractExpirationDate(description));
     }
 
     public static String extractPrice(String description){
