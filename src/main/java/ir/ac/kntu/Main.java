@@ -26,6 +26,7 @@ public class Main {
         }
         String[]x=goods(recipe);
         stuffs(x);
+        extractPrice("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
     }
 
     public static String gettingRecipe(int mode) {
@@ -56,6 +57,7 @@ public class Main {
     }
 
     public static ArrayList<ArrayList<String>> stuffs(String[] goods){
+        HashMap<String,String> hash= new HashMap<>();
         for (String i:goods){
             //last index of list is "}", so we delete it.
             if (i.length()<5){
@@ -66,6 +68,7 @@ public class Main {
             kind= kind.replaceAll("\"","");
             kind = kind.replaceAll("\\{","");
             System.out.println(kind);
+            hash.put(kind,"");
             // for example "cheese":{"price":"192306","quantity":"59","productionDate":"2022-2-21","expirationDate":"2022-3-6"
             for(String good: i.split("\\},")){
                 //extracting name of good
@@ -81,6 +84,16 @@ public class Main {
         return new ArrayList<>();
 
 
+    }
+    public static int extractPrice(String description){
+        int price;
+        //price:158599
+        String temp1 = description.split(",")[0].replaceAll("\"","");
+        //158599
+        String temp2 = temp1.split(":")[1];
+        price=Integer.parseInt(temp2);
+        System.out.println(price);
+        return price;
     }
 }
 //\{"price":"\d+"
