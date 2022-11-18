@@ -26,7 +26,6 @@ public class Main {
         }
         String[]x=goods(recipe);
         stuffs(x);
-        extractExpirationDate("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
 
     }
 
@@ -57,7 +56,7 @@ public class Main {
         return recipe.split(",],");
     }
 
-    public static ArrayList<ArrayList<String>> stuffs(String[] goods){
+    public static ArrayList<String> stuffs(String[] goods){
         HashMap<String,String> hash= new HashMap<>();
         for (String i:goods){
             //last index of list is "}", so we delete it.
@@ -80,31 +79,30 @@ public class Main {
 
             }
 //            HashMap<String,String> kindName=new HashMap<>();
+
 //            kindName.put(i.find("\\w+\":\\["),i.("\\w+\":\\{"));
         }
         return new ArrayList<>();
 
 
     }
-    public static int extractPrice(String description){
-        int price;
+
+    public static String extractPrice(String description){
+        String price;
         //price:158599
         String temp1 = description.split(",")[0].replaceAll("\"","");
         //158599
-        String temp2 = temp1.split(":")[1];
-        price=Integer.parseInt(temp2);
-        System.out.println(price);
+        price = temp1.split(":")[1];
+
         return price;
     }
 
-    public static int extractQuantity(String description){
-        int quantity;
+    public static String extractQuantity(String description){
+        String quantity;
         //quantity:162
         String temp1 = description.split(",")[1].replaceAll("\"","");
         //162
-        String temp2 = temp1.split(":")[1];
-        quantity = Integer.parseInt(temp2);
-        System.out.println(quantity);
+        quantity = temp1.split(":")[1];
         return quantity;
     }
 
@@ -114,7 +112,7 @@ public class Main {
         String temp1 = description.split(",")[2].replaceAll("\"","");
         //2022-4-5
         production =temp1.split(":")[1];
-        System.out.println(production);
+
         return production;
     }
 
@@ -124,7 +122,7 @@ public class Main {
         String temp1 = description.split(",")[3].replaceAll("\"","");
         //2022-4-5
         expiration =temp1.split(":")[1].replaceAll("}","");
-        System.out.println(expiration);
+
         return expiration;
     }
 }
