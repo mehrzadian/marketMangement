@@ -26,7 +26,7 @@ public class Main {
         }
         String[]x=goods(recipe);
         stuffs(x);
-        extractProductionDate("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
+        extractExpirationDate("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
 
     }
 
@@ -116,6 +116,16 @@ public class Main {
         production =temp1.split(":")[1];
         System.out.println(production);
         return production;
+    }
+
+    public static String extractExpirationDate(String description){
+        String expiration;
+        //productionDate:2022-4-5
+        String temp1 = description.split(",")[3].replaceAll("\"","");
+        //2022-4-5
+        expiration =temp1.split(":")[1].replaceAll("}","");
+        System.out.println(expiration);
+        return expiration;
     }
 }
 //\{"price":"\d+"
