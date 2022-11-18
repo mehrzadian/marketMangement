@@ -26,7 +26,8 @@ public class Main {
         }
         String[]x=goods(recipe);
         stuffs(x);
-        extractPrice("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
+        extractQuantity("\"price\":\"158599\",\"quantity\":\"106\",\"productionDate\":\"2022-13-17\",\"expirationDate\":\"2023-2-2\"}");
+
     }
 
     public static String gettingRecipe(int mode) {
@@ -95,5 +96,20 @@ public class Main {
         System.out.println(price);
         return price;
     }
+
+    public static int extractQuantity(String description){
+        int quantity;
+        //quantity:162
+        String temp1 = description.split(",")[1].replaceAll("\"","");
+        //162
+        String temp2 = temp1.split(":")[1];
+        quantity = Integer.parseInt(temp2);
+        System.out.println(quantity);
+        return quantity;
+    }
+
+//    public static String extractProductionDate(String description){
+//        String production
+//    }
 }
 //\{"price":"\d+"
