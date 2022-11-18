@@ -8,24 +8,27 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-
-
         System.out.println("If this is a shopping list enter 1 otherwise enter 0");
         Scanner scanner = new Scanner(System.in);
-        int mode = scanner.nextInt();
+        int mode = Integer.parseInt(scanner.nextLine());
         String recipe = gettingRecipe(mode);
         menu();
-        int whatToDisplay = scanner.nextInt();
-        JsonGenerator jsonGenerator = new JsonGenerator();
-        System.out.println(recipe);
-//        Pattern re = Pattern.compile("(?:,|\\{)?([^:]*):(\"[^\"]*\"|\\{[^}]*\\}|[^},]*)",Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-//        Matcher m = re.matcher(recipe);
-//        System.out.println(m);
-        for( String i:goods(recipe)){
-            System.out.println(i);
+        int whatToDisplay = Integer.parseInt(scanner.nextLine());
+        ArrayList<String> stuffs = stuffs(goods(recipe));
+        if (whatToDisplay == 1) {
+            String kind = scanner.nextLine();
+            displayFromSpecificKind1(stuffs, kind);
+        } else if (whatToDisplay==2){
+
         }
-        String[]x=goods(recipe);
-        stuffs(x);
+        System.out.println(recipe);
+//        for( String i:goods(recipe)){
+//            System.out.println(i);
+//        }
+//        String[]x=goods(recipe);
+//        System.out.println(stuffs(x).size());
+//        System.out.println(stuffs(x));
+
 
     }
 
@@ -65,17 +68,12 @@ public class Main {
             }
             String kind = i.split(":\\[")[0];
             i=i.split(":\\[")[1];
-            kind= kind.replaceAll("\"","");
-            kind = kind.replaceAll("\\{","");
-            System.out.println(kind);
+            kind= kind.replaceAll("\"","").replaceAll("\\{","");
 
             // for example "cheese":{"price":"192306","quantity":"59","productionDate":"2022-2-21","expirationDate":"2022-3-6"
             for(String good: i.split("\\},")){
                 //extracting name of good
-                System.out.println(good);
-                String name=good.split(":\\{")[0];
-                name = name.replaceAll("\"","");
-                System.out.println(name);
+                String name=good.split(":\\{")[0].replaceAll("\"","");
                 String description = good.split(":\\{")[1];
                 stuffs.add(kind);
                 stuffs.add(name);
@@ -83,7 +81,7 @@ public class Main {
 
             }
         }
-        return new ArrayList<>();
+        return stuffs;
 
 
     }
@@ -132,6 +130,28 @@ public class Main {
         expiration =temp1.split(":")[1].replaceAll("}","");
 
         return expiration;
+    }
+
+    public static void displayAllGoods7(ArrayList<String> stuffs){
+
+    }
+
+    public static void displayFromSpecificKind1(ArrayList<String> stuffs,String kind){
+        System.out.println(stuffs);
+        ArrayList<String> fromSpecificKind= new ArrayList<>();
+        for (int i=0;i<stuffs.size();i+=6){
+            if (stuffs.get(i).equals(kind)){
+                fromSpecificKind.add(stuffs.get(i+1));
+            }
+        }
+        System.out.println(fromSpecificKind);
+        System.out.println("We have these stuffs from "+kind.toUpperCase()+" category:");
+        for (int i=0;i<fromSpecificKind.size();i++){
+            System.out.println(i+1+". "+fromSpecificKind.get(i));
+        }
+        if (fromSpecificKind.size()==0){
+            System.out.println("We don't have any "+kind.toUpperCase()+".");
+        }
     }
 }
 //\{"price":"\d+"
