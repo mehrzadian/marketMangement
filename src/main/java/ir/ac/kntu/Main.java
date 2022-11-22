@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
         System.out.println("If this is a shopping list enter 1 otherwise enter 0");
         Scanner scanner = new Scanner(System.in);
         int mode = Integer.parseInt(scanner.nextLine());
@@ -25,6 +27,8 @@ public class Main {
 
         } else if (whatToDisplay == 4) {
             sortByQuantity4(stuffs);
+        }else if (whatToDisplay == 5){
+            printIfExpired5(stuffs);
         }
         System.out.println(recipe);
 //        for( String i:goods(recipe)){
@@ -174,6 +178,27 @@ public class Main {
             quantities.add(Integer.parseInt(stuffs.get(i+3)));
         }
         BubbleSort.printSortedByPrice(quantities,goodsNames);
+    }
+
+    public static void printIfExpired5(ArrayList<String>stuffs){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate now = LocalDate.now();
+        String nowStr =String.valueOf(now);
+        System.out.println(dtf.format(now));
+        ArrayList<String>goodsNames= new ArrayList<>();
+        ArrayList<String> expirationDates = new ArrayList<>();
+        ArrayList<String> expired=new ArrayList<>();
+        for (int i=0;i<stuffs.size();i+=6){
+            expirationDates.add(stuffs.get(i+5));
+            goodsNames.add(stuffs.get(i+1));
+        }
+        for (int i=0;i<expirationDates.size();i+=6){
+            if (expirationDates.get(i).compareTo(nowStr)<0){
+                System.out.print(goodsNames.get(i));
+            }
+        }
+        System.out.println();
+
     }
 }
 //\{"price":"\d+"
