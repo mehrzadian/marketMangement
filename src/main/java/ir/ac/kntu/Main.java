@@ -18,20 +18,7 @@ public class Main {
         menu();
         int whatToDisplay = Integer.parseInt(scanner.nextLine());
         ArrayList<String> stuffs = stuffs(goods(recipe));
-        if (whatToDisplay == 1) {
-            String kind = scanner.nextLine();
-            displayFromSpecificKind1(stuffs, kind);
-        } else if (whatToDisplay==2){
-            sortByPrice2(stuffs);
-        } else if (whatToDisplay ==3){
-            sortByDate3(stuffs);
-        } else if (whatToDisplay == 4) {
-            sortByQuantity4(stuffs);
-        } else if (whatToDisplay == 5){
-            printIfExpired5(stuffs);
-        } else if (whatToDisplay==6){
-            sumOfAll6(stuffs);
-        }
+        whatToDesplay(scanner, whatToDisplay, stuffs);
         System.out.println(recipe);
 //        for( String i:goods(recipe)){
 //            System.out.println(i);
@@ -41,6 +28,27 @@ public class Main {
 //        System.out.println(stuffs(x));
 
 
+    }
+
+    private static void whatToDesplay(Scanner scanner, int whatToDisplay, ArrayList<String> stuffs) {
+        if (whatToDisplay == 1) {
+            String kind = scanner.nextLine();
+            displayFromSpecificKind1(stuffs, kind);
+        } else if (whatToDisplay ==2){
+            sortByPrice2(stuffs);
+        } else if (whatToDisplay ==3){
+            sortByDate3(stuffs);
+        } else if (whatToDisplay == 4) {
+            sortByQuantity4(stuffs);
+        } else if (whatToDisplay == 5){
+            printIfExpired5(stuffs);
+        } else if (whatToDisplay == 6){
+            sumOfAll6(stuffs);
+        } else if (whatToDisplay == 7){
+            printAllStuffs7(stuffs);
+        } else{
+            System.out.println(" Unaproppriate number!");
+        }
     }
 
     public static String gettingRecipe(int mode) {
@@ -221,5 +229,15 @@ public class Main {
         }
         System.out.println(sum);
     }
+
+    public static void printAllStuffs7(ArrayList<String> stuffs){
+        for (int i=0;i<stuffs.size();i+=6){
+            System.out.println(stuffs.get(i+1));
+            System.out.println("    Price : " + stuffs.get(i+2));
+            System.out.println("    Quantity : " + stuffs.get(i+3));
+            System.out.println("    Production Date : " + stuffs.get(i+4));
+            System.out.println("    Expiration Date : " + stuffs.get(i+5));
+        }
+    }
 }
-//\{"price":"\d+"
+
