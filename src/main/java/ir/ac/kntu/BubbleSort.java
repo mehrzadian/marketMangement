@@ -1,6 +1,7 @@
 package ir.ac.kntu;
 
 import java.io.*;
+import java.util.ArrayList;
 
 // copied from gfg and changed it.
 
@@ -9,9 +10,9 @@ import java.io.*;
 class BubbleSort
 {
     // An optimized version of Bubble Sort
-    static void bubbleSort(int[] prices, String[] goodsNames)
+    static void bubbleSort(ArrayList<Integer> prices, ArrayList<String> goodsNames)
     {
-        int n = prices.length;
+        int n = prices.size();
         int i, j, temp;
         boolean swapped;
         for (i = 0; i < n - 1; i++)
@@ -19,16 +20,16 @@ class BubbleSort
             swapped = false;
             for (j = 0; j < n - i - 1; j++)
             {
-                if (prices[j] > prices[j + 1])
+                if (prices.get(j) > prices.get(j+1))
                 {
                     // swap arr[j] and arr[j+1]
-                    temp = prices[j];
-                    prices[j] = prices[j + 1];
-                    prices[j + 1] = temp;
+                    temp = prices.get(j);
+                    prices.set(j,prices.get(j+1));
+                    prices.set(j+1,temp);
 
-                    String tempo = goodsNames[j];
-                    goodsNames[j] = goodsNames[j+1];
-                    goodsNames[j+1] = tempo;
+                    String tempo = goodsNames.get(j);
+                    goodsNames.set(j,goodsNames.get(j+1));
+                    goodsNames.set(j+1,tempo);
                     swapped = true;
                 }
             }
@@ -41,29 +42,29 @@ class BubbleSort
     }
 
     // Function to print an array
-    static void printArray(int[] prices,String[] goodsNames)
+    static void printSortedByPrice(ArrayList<Integer> prices, ArrayList<String> goodsNames)
     {
-        int size = prices.length;
-
-        for (int price : prices){
-            System.out.print(price + " ");
-        }
+        bubbleSort(prices,goodsNames);
+//        for (int price : prices){
+//            System.out.print(price + "  ");
+//        }
         System.out.println();
         for (String i:goodsNames){
             System.out.print(i+"  ");
         }
+        System.out.println();
     }
 
 
-    public static void main(String args[])
-    {
-        int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-        String[] goodsNames = {"a","b","c","d","e","f","g"};
-        int n = arr.length;
-        bubbleSort(arr, goodsNames);
-        System.out.println("Sorted array: ");
-        printArray(arr, goodsNames);
-    }
+//    public static void main(String args[])
+//    {
+////        int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
+////        String[] goodsNames = {"a","b","c","d","e","f","g"};
+////        int n = arr.length;
+////        bubbleSort(arr, goodsNames);
+////        System.out.println("Sorted array: ");
+////        printArray(arr, goodsNames);
+//    }
 }
 
 

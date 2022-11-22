@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("If this is a shopping list enter 1 otherwise enter 0");
@@ -19,7 +20,7 @@ public class Main {
             String kind = scanner.nextLine();
             displayFromSpecificKind1(stuffs, kind);
         } else if (whatToDisplay==2){
-
+            sortByPrice2(stuffs);
         }
         System.out.println(recipe);
 //        for( String i:goods(recipe)){
@@ -132,11 +133,19 @@ public class Main {
         return expiration;
     }
 
-    public static void displayAllGoods7(ArrayList<String> stuffs){
+    public static void sortByPrice2(ArrayList<String> stuffs){
+        ArrayList<String> goodsNames=new ArrayList<>();
+        ArrayList<Integer> prices = new ArrayList<>();
 
+        for (int i=0;i<stuffs.size();i+=6){
+            goodsNames.add(stuffs.get(i+1));
+            prices.add(Integer.parseInt(stuffs.get(i+2)));
+        }
+        BubbleSort.printSortedByPrice(prices,goodsNames);
     }
 
     public static void displayFromSpecificKind1(ArrayList<String> stuffs,String kind){
+        kind = kind.toLowerCase();
         System.out.println(stuffs);
         ArrayList<String> fromSpecificKind= new ArrayList<>();
         for (int i=0;i<stuffs.size();i+=6){
