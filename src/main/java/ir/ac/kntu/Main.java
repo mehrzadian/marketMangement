@@ -21,6 +21,10 @@ public class Main {
             displayFromSpecificKind1(stuffs, kind);
         } else if (whatToDisplay==2){
             sortByPrice2(stuffs);
+        } else if (whatToDisplay ==3){
+
+        } else if (whatToDisplay == 4) {
+            sortByQuantity4(stuffs);
         }
         System.out.println(recipe);
 //        for( String i:goods(recipe)){
@@ -162,8 +166,14 @@ public class Main {
         }
     }
 
-    public static void sortByPrice(ArrayList<String> stuffs){
-
+    public static void sortByQuantity4(ArrayList<String> stuffs){
+        ArrayList<String> goodsNames = new ArrayList<>();
+        ArrayList<Integer> quantities = new ArrayList<>();
+        for (int i=0;i<stuffs.size();i+=6){
+            goodsNames.add(stuffs.get(i+1));
+            quantities.add(Integer.parseInt(stuffs.get(i+3)));
+        }
+        BubbleSort.printSortedByPrice(quantities,goodsNames);
     }
 }
 //\{"price":"\d+"
