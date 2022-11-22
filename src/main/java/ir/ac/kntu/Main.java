@@ -144,14 +144,17 @@ public class Main {
                 fromSpecificKind.add(stuffs.get(i+1));
             }
         }
-        System.out.println(fromSpecificKind);
         System.out.println("We have these stuffs from "+kind.toUpperCase()+" category:");
         for (int i=0;i<fromSpecificKind.size();i++){
             System.out.println(i+1+". "+fromSpecificKind.get(i));
         }
         if (fromSpecificKind.size()==0){
-            System.out.println("We don't have any "+kind.toUpperCase()+".");
+            System.out.println("We don't have any "+kind.toUpperCase()+"!");
         }
+    }
+
+    public static void sortByPrice(ArrayList<String> stuffs){
+
     }
 }
 //\{"price":"\d+"
