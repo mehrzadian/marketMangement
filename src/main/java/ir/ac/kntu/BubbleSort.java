@@ -56,6 +56,47 @@ class BubbleSort
         System.out.println();
     }
 
+    public static void bubbleSortForDates(ArrayList<String> dates, ArrayList<String> goodsNames) {
+        int n = dates.size();
+        int i, j;
+        String temp;
+        boolean swapped;
+        for (i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (j = 0; j < n - i - 1; j++) {
+                if (dates.get(j).compareTo(dates.get(j + 1)) > 0) {
+                    // swap arr[j] and arr[j+1]
+                    temp = dates.get(j);
+                    dates.set(j, dates.get(j + 1));
+                    dates.set(j + 1, temp);
+
+                    String tempo = goodsNames.get(j);
+                    goodsNames.set(j, goodsNames.get(j + 1));
+                    goodsNames.set(j + 1, tempo);
+                    swapped = true;
+                }
+            }
+
+            // IF no two elements were
+            // swapped by inner loop, then break
+            if (!swapped)
+                break;
+        }
+    }
+
+    public static void printSortedByDate(ArrayList<String> dates, ArrayList<String> goodsNames)
+    {
+        bubbleSortForDates(dates,goodsNames);
+//        for (int price : prices){
+//            System.out.print(price + "  ");
+//        }
+        System.out.println();
+        for (String i:goodsNames){
+            System.out.print(i+"  ");
+        }
+        System.out.println();
+    }
+
 
 //    public static void main(String args[])
 //    {
