@@ -1,7 +1,11 @@
 package ir.ac.kntu;
 
 import java.io.*;
+
 // copied from gfg and changed it.
+
+// So for sorting with prices we need names to change their place too.
+// while numbers are being sort, names which are in same place as numbers will swap too.
 class BubbleSort
 {
     // An optimized version of Bubble Sort
@@ -21,6 +25,10 @@ class BubbleSort
                     temp = prices[j];
                     prices[j] = prices[j + 1];
                     prices[j + 1] = temp;
+
+                    String tempo = goodsNames[j];
+                    goodsNames[j] = goodsNames[j+1];
+                    goodsNames[j+1] = tempo;
                     swapped = true;
                 }
             }
@@ -54,10 +62,11 @@ class BubbleSort
         int n = arr.length;
         bubbleSort(arr, goodsNames);
         System.out.println("Sorted array: ");
-        printArray(arr, n);
+        printArray(arr, goodsNames);
     }
 }
 
 
 // This code is contributed
 // by Nikita Tiwari.
+//enhanced by Amirreza Mehrzadian :)
