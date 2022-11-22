@@ -64,7 +64,7 @@ class BubbleSort
         for (i = 0; i < n - 1; i++) {
             swapped = false;
             for (j = 0; j < n - i - 1; j++) {
-                if (dates.get(j).compareTo(dates.get(j + 1)) > 0) {
+                if (dates.get(j).compareTo(dates.get(j + 1)) < 0) {
                     // swap arr[j] and arr[j+1]
                     temp = dates.get(j);
                     dates.set(j, dates.get(j + 1));

@@ -24,11 +24,13 @@ public class Main {
         } else if (whatToDisplay==2){
             sortByPrice2(stuffs);
         } else if (whatToDisplay ==3){
-
+            sortByDate3(stuffs);
         } else if (whatToDisplay == 4) {
             sortByQuantity4(stuffs);
-        }else if (whatToDisplay == 5){
+        } else if (whatToDisplay == 5){
             printIfExpired5(stuffs);
+        } else if (whatToDisplay==6){
+            sumOfAll6(stuffs);
         }
         System.out.println(recipe);
 //        for( String i:goods(recipe)){
@@ -152,6 +154,17 @@ public class Main {
         BubbleSort.printSortedByPrice(prices,goodsNames);
     }
 
+    public static void sortByDate3(ArrayList<String> stuffs){
+        ArrayList<String> goodsNames=new ArrayList<>();
+        ArrayList<String> dates = new ArrayList<>();
+
+        for (int i=0;i<stuffs.size();i+=6){
+            goodsNames.add(stuffs.get(i+1));
+            dates.add(stuffs.get(i+5));
+        }
+        BubbleSort.printSortedByDate(dates,goodsNames);
+    }
+
     public static void displayFromSpecificKind1(ArrayList<String> stuffs,String kind){
         kind = kind.toLowerCase();
         System.out.println(stuffs);
@@ -199,6 +212,14 @@ public class Main {
         }
         System.out.println();
 
+    }
+
+    public static void sumOfAll6(ArrayList<String>stuffs){
+        int sum=0;
+        for (int i=0;i<stuffs.size();i+=6){
+            sum+=Integer.parseInt(stuffs.get(i+2))*Integer.parseInt(stuffs.get(i+3));
+        }
+        System.out.println(sum);
     }
 }
 //\{"price":"\d+"
