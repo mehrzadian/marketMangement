@@ -1,7 +1,10 @@
 package ir.ac.kntu;
 
+<<<<<<< HEAD
 
 import java.io.*;
+=======
+>>>>>>> github/master
 import java.util.ArrayList;
 
 // copied from gfg and changed it.
@@ -56,6 +59,7 @@ class BubbleSort
         System.out.println();
     }
 
+<<<<<<< HEAD
     public static void bubbleSortForDates(ArrayList<String> dates, ArrayList<String> goodsNames) {
         int n = dates.size();
         int i, j;
@@ -97,6 +101,8 @@ class BubbleSort
         System.out.println();
     }
 
+=======
+>>>>>>> github/master
 
 //    public static void main(String args[])
 //    {
