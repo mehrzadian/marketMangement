@@ -20,12 +20,6 @@ public class Main {
         ArrayList<String> stuffs = stuffs(goods(recipe));
         whatToDesplay(scanner, whatToDisplay, stuffs);
         System.out.println(recipe);
-//        for( String i:goods(recipe)){
-//            System.out.println(i);
-//        }
-//        String[]x=goods(recipe);
-//        System.out.println(stuffs(x).size());
-//        System.out.println(stuffs(x));
 
 
     }
@@ -88,7 +82,6 @@ public class Main {
             String kind = i.split(":\\[")[0];
             i=i.split(":\\[")[1];
             kind= kind.replaceAll("\"","").replaceAll("\\{","");
-
             // for example "cheese":{"price":"192306","quantity":"59","productionDate":"2022-2-21","expirationDate":"2022-3-6"
             for(String good: i.split("\\},")){
                 //extracting name of good
@@ -97,12 +90,9 @@ public class Main {
                 stuffs.add(kind);
                 stuffs.add(name);
                 addDescriptions(stuffs, description);
-
             }
         }
         return stuffs;
-
-
     }
 
     public static void addDescriptions(ArrayList<String> stuffs, String description) {
