@@ -3,6 +3,8 @@ package ir.ac.kntu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static ir.ac.kntu.HandleUserRequests.*;
+
 public class Menu {
 
     public static void whatToDesplay(Scanner scanner, int whatToDisplay, ArrayList<String> stuffs) {
