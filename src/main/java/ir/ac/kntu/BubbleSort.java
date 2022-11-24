@@ -1,10 +1,8 @@
 package ir.ac.kntu;
 
-<<<<<<< HEAD
 
 import java.io.*;
-=======
->>>>>>> github/master
+
 import java.util.ArrayList;
 
 // copied from gfg and changed it.
@@ -49,9 +47,6 @@ class BubbleSort
     static void printSortedByPrice(ArrayList<Integer> prices, ArrayList<String> goodsNames)
     {
         bubbleSort(prices,goodsNames);
-//        for (int price : prices){
-//            System.out.print(price + "  ");
-//        }
         System.out.println();
         for (String i:goodsNames){
             System.out.print(i+"  ");
@@ -59,7 +54,6 @@ class BubbleSort
         System.out.println();
     }
 
-<<<<<<< HEAD
     public static void bubbleSortForDates(ArrayList<String> dates, ArrayList<String> goodsNames) {
         int n = dates.size();
         int i, j;
@@ -69,7 +63,6 @@ class BubbleSort
             swapped = false;
             for (j = 0; j < n - i - 1; j++) {
                 if (dates.get(j).compareTo(dates.get(j + 1)) < 0) {
-                    // swap arr[j] and arr[j+1]
                     temp = dates.get(j);
                     dates.set(j, dates.get(j + 1));
                     dates.set(j + 1, temp);
@@ -80,9 +73,6 @@ class BubbleSort
                     swapped = true;
                 }
             }
-
-            // IF no two elements were
-            // swapped by inner loop, then break
             if (!swapped)
                 break;
         }
@@ -91,9 +81,6 @@ class BubbleSort
     public static void printSortedByDate(ArrayList<String> dates, ArrayList<String> goodsNames)
     {
         bubbleSortForDates(dates,goodsNames);
-//        for (int price : prices){
-//            System.out.print(price + "  ");
-//        }
         System.out.println();
         for (String i:goodsNames){
             System.out.print(i+"  ");
@@ -101,18 +88,6 @@ class BubbleSort
         System.out.println();
     }
 
-=======
->>>>>>> github/master
-
-//    public static void main(String args[])
-//    {
-////        int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-////        String[] goodsNames = {"a","b","c","d","e","f","g"};
-////        int n = arr.length;
-////        bubbleSort(arr, goodsNames);
-////        System.out.println("Sorted array: ");
-////        printArray(arr, goodsNames);
-//    }
 }
 
 
