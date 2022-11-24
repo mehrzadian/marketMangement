@@ -1,8 +1,11 @@
 package ir.ac.kntu;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HandleUserRequests {
 
@@ -56,21 +59,25 @@ public class HandleUserRequests {
         BubbleSort.printSortedByPrice(quantities,goodsNames);
     }
 
-    public static void printIfExpired5(ArrayList<String>stuffs){
+    public static void printIfExpired5(ArrayList<String>stuffs) throws ParseException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate now = LocalDate.now();
         String nowStr =String.valueOf(now);
         System.out.println(dtf.format(now));
         ArrayList<String>goodsNames= new ArrayList<>();
         ArrayList<String> expirationDates = new ArrayList<>();
-        ArrayList<String> expired=new ArrayList<>();
         for (int i=0;i<stuffs.size();i+=6){
             expirationDates.add(stuffs.get(i+5));
             goodsNames.add(stuffs.get(i+1));
         }
-        for (int i=0;i<expirationDates.size();i+=6){
-            if (expirationDates.get(i).compareTo(nowStr)<0){
-                System.out.print(goodsNames.get(i));
+        for (int i=0;i<expirationDates.size();i++){
+            String date2 = expirationDates.get(i);
+
+            Date d1 = sdformat.parse(nowStr);
+            Date d2 = sdformat.parse(date2);
+            if (d2.compareTo(d1)<0){
+                System.out.print(goodsNames.get(i)+"   ");
             }
         }
         System.out.println();

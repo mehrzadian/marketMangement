@@ -1,5 +1,6 @@
 package ir.ac.kntu;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ import static ir.ac.kntu.HandleUserRequests.*;
 
 public class Menu {
 
-    public static void whatToDesplay(Scanner scanner, int whatToDisplay, ArrayList<String> stuffs) {
+    public static void whatToDesplay(Scanner scanner, int whatToDisplay, ArrayList<String> stuffs) throws ParseException {
         if (whatToDisplay == 1) {
             String kind = scanner.nextLine();
             displayFromSpecificKind1(stuffs, kind);

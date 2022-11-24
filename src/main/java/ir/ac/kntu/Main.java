@@ -1,5 +1,6 @@
 package ir.ac.kntu;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import static ir.ac.kntu.JsonExtractor.stuffs;
 import static ir.ac.kntu.Menu.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         System.out.println("If this is a shopping list enter 1 otherwise enter 0");
         Scanner scanner = new Scanner(System.in);
